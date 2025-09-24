@@ -4,12 +4,14 @@ from datetime import datetime
 
 
 STATUS_PRIORITY = {
-    # lower number = lower progress; higher number = higher progress
+    # Hiring process flow: Applied → Assessment → Interview → Offer
+    # Declined can happen at any stage, so it has highest priority to preserve rejection info
     "Applied": 1,
     "Assessment": 2,
-    "Interviewed": 3,
+    "Interviewed": 3,  # Note: using "Interviewed" to match main.py normalize_status()
+    "Interview": 3,    # Support both variants
     "Offer": 4,
-    "Declined": 5,
+    "Declined": 5,  # Highest priority - always keep rejection records
 }
 
 
@@ -28,7 +30,15 @@ def parse_date(s: str):
 
 def pick_best_record(app_list):
     """Given a list of (idx, app) for same Company+Job Title, keep the best one.
-    Priority: higher STATUS_PRIORITY, then fewer Unknown fields, then newer Date.
+    
+    Priority rules (in order):
+    1. Higher STATUS_PRIORITY (Declined > Offer > Interview > Assessment > Applied)
+    2. Fewer Unknown fields (more complete information)
+    3. Newer Date (more recent updates)
+    
+    This ensures that if you have Applied + Assessment for the same job, 
+    Assessment is kept. If you have Assessment + Declined, Declined is kept.
+    
     Returns the idx to keep and a set of idxs to drop.
     """
     # Build comparable tuples

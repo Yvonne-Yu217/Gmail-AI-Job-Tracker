@@ -1,8 +1,15 @@
 [
     {
         "Company": "EY",
-        "Job Title": "Skills Assessment",
+        "Job Title": "EY Skills Assessment",
         "Location": "Not specified",
+        "status": "Assessment",
+        "Date": "2025-09-24"
+    },
+    {
+        "Company": "EY",
+        "Job Title": "[Not Specified]",
+        "Location": "[Not Specified]",
         "status": "Assessment",
         "Date": "2025-09-23"
     },
@@ -22,7 +29,7 @@
     },
     {
         "Company": "VanEck",
-        "Job Title": "Not specified",
+        "Job Title": "Potential opportunities",
         "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-22"
@@ -43,14 +50,14 @@
     },
     {
         "Company": "Corteva Agriscience",
-        "Job Title": "Agronomic Data Science & Pathology Intern",
-        "Location": "Not specified",
+        "Job Title": "Agronomic Data Science & Pathology Intern \u2013 #243100W",
+        "Location": "Not provided",
         "status": "Declined",
         "Date": "2025-09-22"
     },
     {
         "Company": "AbbVie",
-        "Job Title": "2026 APEX Advanced Analytics Intern (Masters)",
+        "Job Title": "2026 APEX Advanced Analytics Intern (Masters)-R00134305",
         "Location": "Not specified",
         "status": "Declined",
         "Date": "2025-09-21"
@@ -64,7 +71,7 @@
     },
     {
         "Company": "National Interstate",
-        "Job Title": "Data Science Intern 2026",
+        "Job Title": "R7993 Data Science Intern 2026",
         "Location": "Not specified",
         "status": "Declined",
         "Date": "2025-09-20"
@@ -78,7 +85,7 @@
     },
     {
         "Company": "Boston Scientific",
-        "Job Title": "AIS R&D Research Data Science Intern",
+        "Job Title": "AIS R&D Research Data Science Intern (611635)",
         "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-19"
@@ -91,8 +98,15 @@
         "Date": "2025-09-19"
     },
     {
+        "Company": "ICF",
+        "Job Title": "2026 Summer Intern, Data Scientist / Engineer",
+        "Location": "Not specified",
+        "status": "Applied",
+        "Date": "2025-09-19"
+    },
+    {
         "Company": "RELX",
-        "Job Title": "Data Analytics Intern- Insurance",
+        "Job Title": "Data Analytics Intern - Insurance",
         "Location": "Not specified",
         "status": "Declined",
         "Date": "2025-09-19"
@@ -105,65 +119,72 @@
         "Date": "2025-09-19"
     },
     {
+        "Company": "Lyft",
+        "Job Title": "Data Analyst Intern (2026)",
+        "Location": "Not specified",
+        "status": "Applied",
+        "Date": "2025-09-18"
+    },
+    {
         "Company": "Dow Jones",
         "Job Title": "Summer 2026 Internship \u2013 Research Intern",
-        "Location": "Not provided",
+        "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-18"
     },
     {
         "Company": "Oracle",
         "Job Title": "2026 Internship - Business Strategy and Performance Analytics",
+        "Location": "Not provided",
+        "status": "Applied",
+        "Date": "2025-09-18"
+    },
+    {
+        "Company": "Oracle",
+        "Job Title": "2026 Internship - Business Strategy and Performance Analytics - 11402",
         "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-18"
     },
     {
         "Company": "Xcel Energy",
-        "Job Title": "Data Analytics intern",
+        "Job Title": "Data Analytics intern - Minneapolis, MN - JR110194",
         "Location": "Minneapolis, MN",
         "status": "Applied",
         "Date": "2025-09-18"
     },
     {
-        "Company": "Oatey",
-        "Job Title": "Not specified",
-        "Location": "Not specified",
-        "status": "Applied",
-        "Date": "2025-09-18"
-    },
-    {
         "Company": "Marriott Vacations Worldwide",
-        "Job Title": "Not specified",
-        "Location": "Not specified",
+        "Job Title": "[Not provided]",
+        "Location": "[Not provided]",
         "status": "Applied",
         "Date": "2025-09-18"
     },
     {
-        "Company": "ZS",
-        "Job Title": "Advanced Data Science Associate - Intern",
-        "Location": "North America - University Students",
-        "status": "Applied",
+        "Company": "Amgen",
+        "Job Title": "Grad Intern \u2013 Commercial Leadership & Insights Program (Summer 2026)",
+        "Location": "Not specified",
+        "status": "Declined",
         "Date": "2025-09-18"
     },
     {
         "Company": "TikTok",
-        "Job Title": "Data Scientist Intern",
+        "Job Title": "Data Scientist Intern (TikTok-Business Risk Integrated Control-Risk Measurement) - 2026 Summer (BS/MS)",
         "Location": "Not specified",
         "status": "Assessment",
         "Date": "2025-09-18"
     },
     {
         "Company": "West Bend Insurance",
-        "Job Title": "Intern \u2013 IT Data Scientist (Summer 2026)",
-        "Location": "Not specified",
+        "Job Title": "Intern \u2013 IT Data Scientist (Summer 2026) (2025-3353)",
+        "Location": "Not Specified",
         "status": "Applied",
         "Date": "2025-09-17"
     },
     {
         "Company": "SharkNinja",
-        "Job Title": "Summer 2026: Data Science Intern",
-        "Location": "Not specified",
+        "Job Title": "Summer 2026: Data Science Intern (May to August)",
+        "Location": "Not provided",
         "status": "Applied",
         "Date": "2025-09-17"
     },
@@ -183,22 +204,22 @@
     },
     {
         "Company": "Amgen",
-        "Job Title": "Grad Intern \u2013 Commercial Leadership & Insights Program",
-        "Location": "Not specified",
+        "Job Title": "R-223984 Grad Intern \u2013 Commercial Leadership & Insights Program",
+        "Location": "Not provided",
         "status": "Applied",
         "Date": "2025-09-16"
     },
     {
         "Company": "Navy Federal",
-        "Job Title": "Summer Associate Internship (Data Scientist - Model Risk Management)",
-        "Location": "Not specified",
+        "Job Title": "Summer Associate Internship (Data Scientist - Model Risk Management) - 26902",
+        "Location": "Not Specified",
         "status": "Applied",
         "Date": "2025-09-16"
     },
     {
         "Company": "Quantbot Technologies",
-        "Job Title": "Not specified",
-        "Location": "Not specified",
+        "Job Title": "Not provided",
+        "Location": "Not provided",
         "status": "Applied",
         "Date": "2025-09-16"
     },
@@ -210,36 +231,22 @@
         "Date": "2025-09-16"
     },
     {
-        "Company": "ICF",
-        "Job Title": "2026 Summer Intern, Data Scientist / Engineer",
-        "Location": "Not specified",
-        "status": "Applied",
-        "Date": "2025-09-16"
-    },
-    {
-        "Company": "Barclays",
-        "Job Title": "Quantitative Finance",
-        "Location": "Not specified",
-        "status": "Assessment",
-        "Date": "2025-09-16"
-    },
-    {
         "Company": "Duolingo",
-        "Job Title": "[not specified]",
-        "Location": "[not specified]",
+        "Job Title": "[Not provided]",
+        "Location": "[Not provided]",
+        "status": "Applied",
+        "Date": "2025-09-15"
+    },
+    {
+        "Company": "Duquesne Light Holdings",
+        "Job Title": "2026 Summer Internship - Operations Analytics",
+        "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-15"
     },
     {
         "Company": "TikTok",
         "Job Title": "Data Scientist Intern (TikTok Shop Business Product DS) - 2026 Start (BS/MS)",
-        "Location": "Not specified",
-        "status": "Applied",
-        "Date": "2025-09-15"
-    },
-    {
-        "Company": "TikTok",
-        "Job Title": "Data Scientist Intern (TikTok-Business Risk Integrated Control-Risk Measurement) - 2026 Summer (BS/MS)",
         "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-15"
@@ -253,14 +260,14 @@
     },
     {
         "Company": "Basin Electric",
-        "Job Title": "STUDENT INTERN - IT DATA ANALYTICS (HDQ)",
-        "Location": "Not provided",
+        "Job Title": "STUDENT INTERN - IT DATA ANALYTICS (HDQ) (648)",
+        "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-15"
     },
     {
         "Company": "TD",
-        "Job Title": "2026 Summer Internship Program - Platforms and Technology - Data Science",
+        "Job Title": "2026 Summer Internship Program - Platforms and Technology - Data Science ( R_1443924 )",
         "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-15"
@@ -275,27 +282,27 @@
     {
         "Company": "ABK",
         "Job Title": "2026 US Summer Internships - Analytics & Data Science",
-        "Location": "Not provided",
+        "Location": "Not specified",
         "status": "Declined",
         "Date": "2025-09-14"
     },
     {
         "Company": "Moody's",
-        "Job Title": "Ratings Technology Summer Internship (Data Engineering)",
+        "Job Title": "Moody's Ratings Technology Summer Internship (Data Engineering)",
         "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-12"
     },
     {
         "Company": "Lucid Software",
-        "Job Title": "Not specified",
-        "Location": "Not specified",
+        "Job Title": "[not provided]",
+        "Location": "[not provided]",
         "status": "Applied",
         "Date": "2025-09-12"
     },
     {
         "Company": "Citizens Bank",
-        "Job Title": "Data Science Graduate Internship (Summer 2026)",
+        "Job Title": "Data Science Graduate Internship (Summer 2026) - 41917",
         "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-12"
@@ -330,15 +337,15 @@
     },
     {
         "Company": "Equitable",
-        "Job Title": "Not specified",
-        "Location": "Not specified",
+        "Job Title": "[not provided]",
+        "Location": "[not provided]",
         "status": "Applied",
         "Date": "2025-09-11"
     },
     {
         "Company": "Two Sigma",
         "Job Title": "Quantitative Researcher - Internship [2026 Summer]",
-        "Location": "Not specified",
+        "Location": "Not Specified",
         "status": "Applied",
         "Date": "2025-09-11"
     },
@@ -357,13 +364,6 @@
         "Date": "2025-09-11"
     },
     {
-        "Company": "Activate Consulting",
-        "Job Title": "Not specified",
-        "Location": "Not specified",
-        "status": "Applied",
-        "Date": "2025-09-11"
-    },
-    {
         "Company": "U.S. Bank",
         "Job Title": "2026 Quantitative Modeling Summer Intern",
         "Location": "Not specified",
@@ -372,7 +372,7 @@
     },
     {
         "Company": "Crum & Forster (United States Fire Insurance Company)",
-        "Job Title": "Data Science Intern- Summer 2026",
+        "Job Title": "Data Science Intern- Summer 2026 - Morristown, NJ or Remote",
         "Location": "Morristown, NJ or Remote",
         "status": "Applied",
         "Date": "2025-09-10"
@@ -386,8 +386,8 @@
     },
     {
         "Company": "Corebridge Financial",
-        "Job Title": "[not specified]",
-        "Location": "[not specified]",
+        "Job Title": "Not Specified",
+        "Location": "Not Specified",
         "status": "Applied",
         "Date": "2025-09-10"
     },
@@ -400,8 +400,8 @@
     },
     {
         "Company": "Ramp",
-        "Job Title": "Applied Scientist Intern",
-        "Location": "Summer 2026",
+        "Job Title": "Summer 2026 | Applied Scientist Intern",
+        "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-10"
     },
@@ -413,15 +413,15 @@
         "Date": "2025-09-10"
     },
     {
-        "Company": "Oaktree",
-        "Job Title": "2026 Undergraduate Intern, Risk, Reporting & Analytics",
-        "Location": "Not specified",
-        "status": "Applied",
+        "Company": "Peraton",
+        "Job Title": "Summer 2026 Data Science Intern (2025-158534)",
+        "Location": "Not Provided",
+        "status": "Declined",
         "Date": "2025-09-09"
     },
     {
-        "Company": "LPL Financial",
-        "Job Title": "Not specified",
+        "Company": "Oaktree",
+        "Job Title": "2026 Undergraduate Intern, Risk, Reporting & Analytics",
         "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-09"
@@ -441,15 +441,15 @@
         "Date": "2025-09-09"
     },
     {
-        "Company": "Data Science ASR Team",
-        "Job Title": "Quantitative Research Intern",
-        "Location": "Not specified",
+        "Company": "Not Specified",
+        "Job Title": "2117060 Quantitative Research Intern- Data Science ASR Team",
+        "Location": "Not Specified",
         "status": "Applied",
         "Date": "2025-09-09"
     },
     {
         "Company": "Amway",
-        "Job Title": "Data Analytics and Insights Intern, Summer 2026",
+        "Job Title": "Data Analytics and Insights Intern, Summer 2026 (42256)",
         "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-09"
@@ -462,8 +462,15 @@
         "Date": "2025-09-09"
     },
     {
+        "Company": "TD",
+        "Job Title": "2026 Summer Internship Program - Platforms and Technology - Data Science ( R_1443900 )",
+        "Location": "Not specified",
+        "status": "Applied",
+        "Date": "2025-09-09"
+    },
+    {
         "Company": "Mutual of Omaha",
-        "Job Title": "Summer 2026 Graduate Data Science Intern",
+        "Job Title": "Summer 2026 Graduate Data Science Intern - Remote",
         "Location": "Remote",
         "status": "Applied",
         "Date": "2025-09-09"
@@ -476,16 +483,16 @@
         "Date": "2025-09-08"
     },
     {
-        "Company": "Exelon Business Servcs Co, LLC",
-        "Job Title": "2026 Summer Internship - Data Science/Analytics",
-        "Location": "Various Exelon Locations",
+        "Company": "Exelon Business Services, LLC",
+        "Job Title": "2026 Summer Internship - Data Science/Analytics (Various Exelon Locations) (2025-26565)",
+        "Location": "Illinois, Chicago, USA",
         "status": "Applied",
         "Date": "2025-09-07"
     },
     {
         "Company": "DICK'S Sporting Goods, Inc.",
         "Job Title": "Data Science - Summer 2026 Corporate Internship",
-        "Location": "Not provided",
+        "Location": "Not specified",
         "status": "Declined",
         "Date": "2025-09-06"
     },
@@ -504,8 +511,15 @@
         "Date": "2025-09-05"
     },
     {
+        "Company": "Link Logistics Real Estate",
+        "Job Title": "Research & Analytics Summer Intern",
+        "Location": "Not specified",
+        "status": "Applied",
+        "Date": "2025-09-05"
+    },
+    {
         "Company": "UBS",
-        "Job Title": "2026 Summer Internship - Evidence Lab",
+        "Job Title": "2026 Summer Internship - Evidence Lab - New York",
         "Location": "New York",
         "status": "Declined",
         "Date": "2025-09-05"
@@ -527,7 +541,7 @@
     {
         "Company": "TikTok",
         "Job Title": "Data Science intern (TikTok-Product-Data Science-UG Mid-Platform-US) - 2025 Start (BS/MS)",
-        "Location": "US",
+        "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-03"
     },
@@ -540,7 +554,7 @@
     },
     {
         "Company": "Qualcomm",
-        "Job Title": "Machine Learning & Artificial Intelligence Engineering Internship \u2013 Summer 2026",
+        "Job Title": "Machine Learning & Artificial Intelligence Engineering Internship \u2013 Summer 2026 - 3078847",
         "Location": "Not specified",
         "status": "Applied",
         "Date": "2025-09-03"
@@ -554,8 +568,8 @@
     },
     {
         "Company": "Barclays",
-        "Job Title": "[not provided]",
-        "Location": "[not provided]",
+        "Job Title": "[not specified]",
+        "Location": "[not specified]",
         "status": "Applied",
         "Date": "2025-09-02"
     }
