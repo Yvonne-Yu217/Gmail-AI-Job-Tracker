@@ -9,12 +9,14 @@ This project builds on [zichengalexzhao/job-app-tracker](https://github.com/zich
 Credit: the original idea and foundation come from the repository above; this work focuses on pragmatic enhancements and operational refinements, with clear attribution and a link back.
 
 ## Changes Summary
-- Enhanced email classification, especially for nuanced declines
-- Flexible model support (default cost‑efficient model, configurable by user)
-- Real-time pipeline output with per-step summaries
-- Progress bar in email processing for visibility
-- Simplified visuals (status distribution chart)
-- Safer defaults and .gitignore for credentials/data
+- Enhanced email classification with improved status normalization logic for nuanced declines
+- Flexible model support (default cost-efficient model, configurable by user)
+- Real-time pipeline output with per-step summaries and progress tracking
+- Progress bar with tqdm for email processing visibility
+- Comprehensive interactive dashboard with 4-panel layout (status distribution, key metrics, timeline, activity calendar)
+- Modern UI design with professional color schemes and responsive visualizations
+- Robust error handling and graceful interruption support
+- Safer defaults and comprehensive .gitignore for credentials/data protection
 
 ## Quick Setup
 
