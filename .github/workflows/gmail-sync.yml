@@ -1,0 +1,71 @@
+name: Gmail Sync (Manual or Scheduled)
+
+on:
+  # Manually trigger from the Actions tab
+  workflow_dispatch:
+    inputs:
+      run_pipeline:
+        description: 'Run full pipeline (requires Gmail/OpenAI secrets)'
+        required: false
+        default: 'false'
+  # Optional: daily schedule at 09:00 UTC
+  schedule:
+    - cron: '0 9 * * *'
+
+jobs:
+  gmail-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Decide whether to run pipeline
+        id: decide
+        run: |
+          RUN_PIPELINE_INPUT="${{ github.event.inputs.run_pipeline }}"
+          HAS_SECRETS=1
+          [ -z "${{ secrets.OPENAI_API_KEY }}" ] && HAS_SECRETS=0
+          [ -z "${{ secrets.GMAIL_CREDENTIALS_JSON }}" ] && HAS_SECRETS=0
+          [ -z "${{ secrets.GMAIL_TOKEN_JSON }}" ] && HAS_SECRETS=0
+
+          if [ "$RUN_PIPELINE_INPUT" = "true" ] && [ "$HAS_SECRETS" = "1" ]; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=no" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Prepare credentials
+        if: steps.decide.outputs.run == 'yes'
+        run: |
+          mkdir -p config
+          echo "${{ secrets.GMAIL_CREDENTIALS_JSON }}" > config/gmail_credentials.json
+          echo "${{ secrets.GMAIL_TOKEN_JSON }}" > config/token.json
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > config/.env
+
+      - name: Run pipeline (safe default: limited scope)
+        if: steps.decide.outputs.run == 'yes'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          # You can narrow scope as needed, e.g., limit to N emails or last X days.
+          python job-app-tracker/main.py --days 1 --limit 20 || true
+          python job-app-tracker/clean_duplicates.py || true
+          python job-app-tracker/generate_stats.py || true
+          python job-app-tracker/create_visualizations.py || true
+
+      - name: Skip notice (no secrets or run disabled)
+        if: steps.decide.outputs.run != 'yes'
+        run: |
+          echo "Skipping Gmail sync: either run_pipeline=false or required secrets are missing."
+          echo "Required secrets: OPENAI_API_KEY, GMAIL_CREDENTIALS_JSON, GMAIL_TOKEN_JSON"
