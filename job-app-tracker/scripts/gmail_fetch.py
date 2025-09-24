@@ -39,10 +39,31 @@ def get_gmail_service():
 def fetch_emails(since_hours=1):
     service = get_gmail_service()
     
-    query = ""
+    # Ultra-minimal filtering strategy:
+    # - NO keyword restrictions 
+    # - NO sender restrictions
+    # - Only exclude obvious marketing newsletters
+    # - Let AI do ALL the filtering for maximum coverage
+    
+    # Only exclude the most obvious marketing emails
+    excludes = [
+        'subject:"job alert"',
+        'subject:"daily job"',
+        'subject:"weekly job"',
+        'subject:newsletter',
+        'subject:unsubscribe'
+    ]
+
+    query_parts = []
     if since_hours is not None:
         time_threshold = (datetime.now() - timedelta(hours=since_hours)).strftime('%Y/%m/%d')
-        query = f"after:{time_threshold}"
+        query_parts.append(f"after:{time_threshold}")
+    
+    # Add exclude filters only
+    for ex in excludes:
+        query_parts.append('-' + ex)
+
+    query = ' '.join(query_parts)
     print(f"Query: '{query}'")
     
     all_messages = []

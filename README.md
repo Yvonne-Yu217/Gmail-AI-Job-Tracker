@@ -1,92 +1,95 @@
 # Job Application Tracker
 
-This project automates job application tracking by fetching relevant emails, extracting job details using LLM, and visualizing the data. It runs locally or via GitHub Actions.
+An enhanced job application tracking system that automatically extracts and analyzes job application data from Gmail using AI.
 
-![Picture](job-app-tracker/featured.jpg)
+## Based On
 
-## Features
+This project is based on [zichengalexzhao/job-app-tracker](https://github.com/zichengalexzhao/job-app-tracker) with significant improvements:
+Attribution: the original idea and foundation come from the repository above. This project focuses on practical enhancements and operational tweaks, with clear credit and link back.
 
-- **Automated Email Processing**: Fetches job-related emails from Gmail.
-- **AI-Powered Classification**: Uses OpenAI to extract job details.
-- **Data Cleaning**: Removes duplicate entries.
-- **Visualizations**: Generates a [Markdown table](TABLE.md) and a [Sankey chart](visualizations/sankey.html) of job statuses.
-- **Automated Updates**: Runs every hour via GitHub Actions.
+## Changes Summary
+- Enhanced email classification, especially for nuanced declines
+- Flexible model support (default cost‑efficient model, configurable by user)
+- Real-time pipeline output with per-step summaries
+- Progress bar in email processing for visibility
+- Simplified visuals (status distribution chart)
+- Safer defaults and .gitignore for credentials/data
 
-## Installation
+## Quick Setup
 
 ### Prerequisites
-
 - Python 3.9+
-- Google API credentials
+- Gmail account
 - OpenAI API key
-- Gmail access enabled
 
-### Setup Locally
-
-#### 1. Clone the repository
-
+### Installation
 ```bash
 git clone https://github.com/yourusername/job-app-tracker.git
 cd job-app-tracker
-```
-
-#### 2. Create a virtual environment
-
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-```
-
-#### 3. Install dependencies
-
-```bash
 pip install -r requirements.txt
 ```
 
-#### 4. Configure API keys
+### Configuration
+1. **Gmail API Setup**:
+   - Go to [Google Cloud Console](https://console.cloud.google.com/)
+   - Enable Gmail API
+   - Create OAuth 2.0 credentials (Desktop app)
+   - Download as `config/gmail_credentials.json`
 
-- Place your Gmail credentials in config/gmail_credentials.json
-- Save your Gmail token in config/token.json
-- Create a .env file in config/ and add:
+2. **OpenAI API**:
+   ```bash
+   echo "OPENAI_API_KEY=your-key-here" > config/.env
+   ```
 
-```ini
-OPENAI_API_KEY=your-openai-api-key
-```
+## Usage
 
-#### 5. Run the script
-
+### Complete Pipeline (Recommended)
 ```bash
+python job-app-tracker/pipeline.py
+```
+This runs everything: data reset → email extraction → deduplication → export → statistics → visualization
+
+### Individual Components
+```bash
+# Extract emails only (all emails)
 python job-app-tracker/main.py
+
+# Extract emails from specific date range
+python job-app-tracker/main.py --since 2024-01-01 --until 2024-12-31
+
+# Extract emails from last N days
+python job-app-tracker/main.py --days 30
+
+# Extract with limit
+python job-app-tracker/main.py --limit 100
+
+# Clean duplicates
+python job-app-tracker/clean_duplicates.py
+
+# Generate stats
+python job-app-tracker/generate_stats.py
+
+# Export to CSV
+python job-app-tracker/print_table.py --output data/applications.csv
 ```
 
-### Running on Github Actions
+## Output Files
+- `data/job_applications.json` - Clean job application data
+- `data/job_applications.csv` - CSV export
+- `data/processed_ids.json` - Processed email IDs tracking
+- `visualizations/status_distribution.html` - Status distribution pie chart
 
-The workflow is defined in `.github/workflows/update.yml` and runs every hour.
+## Features
+- Smart email filtering (excludes job alerts, includes applications/interviews/offers/rejections)
+- AI-powered extraction of company, position, status, location, date
+- Automatic duplicate detection and merging
+- Cost-efficient OpenAI usage
+- Interactive HTML visualizations
 
-#### Setting Up Secrets
+## Troubleshooting
+- **Gmail auth issues**: Delete `config/token.json` to re-authenticate
+- **OpenAI errors**: Check API key in `config/.env` and account credits
+- **No emails found**: Ensure you have job-related emails in Gmail inbox
 
-1. Go to Repository Settings → Secrets and variables → Actions.
-2. Add the following secrets:
-
-- `GMAIL_CREDENTIALS`: Your Gmail credentials JSON (as a string).
-- `GMAIL_TOKEN`: Your Gmail token JSON (as a string).
-- `OPENAI_API_KEY`: Your OpenAI API key.
-- `GITHUB_TOKEN`: (Automatically available in GitHub Actions)
-
-#### Workflow Steps
-
-1. Fetches latest emails and classifies job applications.
-2. Cleans duplicate entries in the dataset.
-3. Generates visualizations of job application statuses.
-4. Commits and pushes updates back to the repository.
-
-### Data Processing
-
-- Email Fetching (`gmail_fetch.py`): Connects to Gmail, fetches job-related emails, and extracts content.
-- Email Classification (`process_emails.py`): Uses OpenAI to determine if an email is a job application and extracts job details.
-- Duplicate Cleaning (`clean_duplicates.py`): Removes redundant job entries.
-- Visualization (`visualize_table.py`): Creates a Markdown table and a Sankey chart of job application statuses.
-
-### Contributing
-
-Feel free to submit pull requests or open issues for feature requests and bug fixes.
+## License
+MIT License - see [LICENSE](LICENSE) file.

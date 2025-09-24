@@ -1,74 +1,96 @@
 import json
 import os
+from datetime import datetime
+
+
+STATUS_PRIORITY = {
+    # lower number = lower progress; higher number = higher progress
+    "Applied": 1,
+    "Assessment": 2,
+    "Interviewed": 3,
+    "Offer": 4,
+    "Declined": 5,
+}
+
 
 def count_unknown_fields(app):
     """Count the number of 'Unknown' fields in an application record."""
     unknown_count = sum(1 for value in app.values() if value == "Unknown")
     return unknown_count
 
+
+def parse_date(s: str):
+    try:
+        return datetime.strptime(s, "%Y-%m-%d").date()
+    except Exception:
+        return None
+
+
+def pick_best_record(app_list):
+    """Given a list of (idx, app) for same Company+Job Title, keep the best one.
+    Priority: higher STATUS_PRIORITY, then fewer Unknown fields, then newer Date.
+    Returns the idx to keep and a set of idxs to drop.
+    """
+    # Build comparable tuples
+    scored = []
+    for idx, app in app_list:
+        status = app.get("status", "Applied")
+        prio = STATUS_PRIORITY.get(status, 0)
+        unknowns = count_unknown_fields(app)
+        d = parse_date(app.get("Date", ""))
+        scored.append((idx, app, prio, unknowns, d))
+
+    # Sort by: priority desc, unknowns asc, date desc
+    scored.sort(key=lambda x: (x[2], -x[3], x[4] or datetime.min.date()))  # temporary sort; will reorder next
+    # We actually want: priority DESC, unknowns ASC, date DESC
+    scored = sorted(scored, key=lambda x: (
+        x[2],                    # priority
+        -x[3],                   # negative unknowns for fewer first
+        (x[4] or datetime.min.date())
+    ), reverse=True)
+
+    keep_idx = scored[0][0]
+    drop_idxs = {idx for idx, *_ in scored[1:]}
+    return keep_idx, drop_idxs
+
+
 def clean_duplicates(filename="data/job_applications.json"):
     # Load the existing job applications
     if not os.path.exists(filename):
         print("No job_applications.json found.")
         return
-    
+
     with open(filename, 'r') as f:
         applications = json.load(f)
-    
+
     print(f"Found {len(applications)} records before cleaning.")
-    
-    # Create dictionaries to track applications by company and job title
-    unique_apps = {}
-    duplicates_to_remove = []
-    
-    # Group applications by company and job title
+
+    # Group applications by (Company, Job Title)
+    buckets = {}
     for i, app in enumerate(applications):
-        key = f"{app['Company']}_{app['Job Title']}"
-        if key not in unique_apps:
-            unique_apps[key] = []
-        unique_apps[key].append((i, app))
-    
-    # Process each group of applications
-    for key, app_list in unique_apps.items():
-        if len(app_list) > 1:  # Multiple entries for the same job
-            # Check for Applied/Declined duplicates
-            has_applied = False
-            has_declined = False
-            for idx, app in app_list:
-                if app['status'] == "Applied":
-                    has_applied = True
-                elif app['status'] == "Declined":
-                    has_declined = True
-            
-            # Remove Applied if Declined exists
-            if has_applied and has_declined:
-                for idx, app in app_list:
-                    if app['status'] == "Applied":
-                        duplicates_to_remove.append(idx)
-            
-            # Handle Interviewed duplicates: keep the most complete record
-            interviewed_records = [(idx, app) for idx, app in app_list if app['status'] == "Interviewed"]
-            if len(interviewed_records) > 1:  # Multiple Interviewed entries
-                # Find the record with the fewest 'Unknown' fields
-                best_record = min(interviewed_records, key=lambda x: count_unknown_fields(x[1]))
-                # Mark all other Interviewed records for removal
-                for idx, app in interviewed_records:
-                    if idx != best_record[0]:  # Skip the best record
-                        duplicates_to_remove.append(idx)
-    
-    # Sort duplicates in reverse order to remove from the end first (avoid index shifting)
-    duplicates_to_remove = list(set(duplicates_to_remove))  # Remove duplicates in removal list
-    duplicates_to_remove.sort(reverse=True)
-    
-    # Remove duplicates
-    for idx in duplicates_to_remove:
+        key = (app.get('Company', ''), app.get('Job Title', ''))
+        buckets.setdefault(key, []).append((i, app))
+
+    to_remove = set()
+
+    for key, app_list in buckets.items():
+        if len(app_list) <= 1:
+            continue
+        keep, drops = pick_best_record(app_list)
+        to_remove.update(drops)
+
+    # Remove in reverse order to avoid index shift
+    removed = 0
+    for idx in sorted(to_remove, reverse=True):
         del applications[idx]
-    
+        removed += 1
+
     # Save the cleaned data
     with open(filename, 'w') as f:
         json.dump(applications, f, indent=4)
-    
-    print(f"Cleaned {len(duplicates_to_remove)} duplicate entries. Now {len(applications)} records remain.")
+
+    print(f"Cleaned {removed} duplicate entries. Now {len(applications)} records remain.")
+
 
 if __name__ == '__main__':
     clean_duplicates()
