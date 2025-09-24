@@ -4,7 +4,7 @@ An enhanced job application tracking system that automatically extracts and anal
 
 ## Based On
 
-This project is based on [zichengalexzhao/job-app-tracker](https://github.com/zichengalexzhao/job-app-tracker) with significant improvements:
+This project is based on [zichengalexzhao/job-app-tracker](https://github.com/zichengalexzhao/job-app-tracker) with practical improvements:
 Attribution: the original idea and foundation come from the repository above. This project focuses on practical enhancements and operational tweaks, with clear credit and link back.
 
 ## Changes Summary
