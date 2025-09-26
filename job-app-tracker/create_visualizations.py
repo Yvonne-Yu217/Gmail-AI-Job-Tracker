@@ -595,23 +595,30 @@ def create_all_in_one_dashboard(data):
         ['Success Rate', f"{success_rate:.1f}%"]
     ]
     
-    # Create alternating row colors
+    # Create alternating row colors with special styling for formula
     row_colors = ['#F8F9FA', '#E9ECEF'] * 4
+    
+    # Create alternating row colors for the table
+    formula_colors = ['#F8F9FA', '#EDF2F7'] * (len(metrics_data) // 2 + 1)  # Alternating light colors
     
     fig.add_trace(go.Table(
         header=dict(
             values=['<b>Metric</b>', '<b>Value</b>'],
             fill_color='#6C5CE7',
-            font=dict(color='white', size=15, family='Arial Black'),
+            font=dict(color='white', size=18, family='Arial Black'),
             align='center',
-            height=45
+            height=50
         ),
         cells=dict(
             values=[[row[0] for row in metrics_data], [row[1] for row in metrics_data]],
-            fill_color=[row_colors[:len(metrics_data)], row_colors[:len(metrics_data)]],
-            font=dict(color='#2C3E50', size=13, family='Arial'),
-            align=['left', 'center'],
-            height=38
+            fill_color=[formula_colors[:len(metrics_data)], formula_colors[:len(metrics_data)]],
+            font=dict(
+                color='#2C3E50',
+                size=15,
+                family='Arial Black'
+            ),
+            align=['center', 'center'],
+            height=42  # Use a slightly larger height for all rows
         )
     ), row=1, col=2)
     
@@ -691,6 +698,8 @@ def create_all_in_one_dashboard(data):
                 hovertemplate='<b>%{x}</b><br>Applications: %{y}<extra></extra>',
                 name='Daily Activity'
             ), row=2, col=2)
+    
+    # No formula annotation - keeping the dashboard clean and simple
     
     # Update layout with beautiful modern styling
     fig.update_layout(
