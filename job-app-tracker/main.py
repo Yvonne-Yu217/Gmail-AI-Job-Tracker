@@ -48,7 +48,7 @@ def normalize_status(raw_status):
     
     # Interview - third priority
     elif any(word in raw for word in ["interview", "phone screen", "video call", "onsite", "final round"]):
-        return "Interview"
+        return "Interviewed"
     
     # Assessment - fourth priority
     elif any(word in raw for word in [

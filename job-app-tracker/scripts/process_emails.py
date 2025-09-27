@@ -34,11 +34,7 @@ def _looks_like_non_application(text: str) -> bool:
 
 def is_job_application(snippet):
     """Quick check if email is job application-related using snippet."""
-    # Fast heuristic rejection
-    if _looks_like_non_application(snippet):
-        return False
-    
-    # Enhanced local pattern matching for common rejection phrases
+    # Enhanced local pattern matching for common rejection phrases - CHECK THIS FIRST
     snippet_lower = snippet.lower()
     rejection_indicators = [
         "decided to move forward with other candidates",
@@ -52,6 +48,10 @@ def is_job_application(snippet):
     # If we detect clear rejection language, it's definitely a job application
     if any(phrase in snippet_lower for phrase in rejection_indicators):
         return True
+    
+    # Fast heuristic rejection - only after checking for rejection emails
+    if _looks_like_non_application(snippet):
+        return False
     
     response = openai.ChatCompletion.create(
         model="gpt-4o-mini",
@@ -75,8 +75,21 @@ def is_job_application(snippet):
 
 def classify_email(email_content):
     """Extract details from full email content."""
-    # Reject obvious non-application emails
-    if _looks_like_non_application(email_content):
+    # Check for rejection emails first - they should always be processed
+    content_lower = email_content.lower()
+    rejection_indicators = [
+        "decided to move forward with other candidates",
+        "move forward with other candidates", 
+        "not selected", "not moving forward", "regret to inform",
+        "application against the selection criteria",
+        "thank you for taking the time to apply",
+        "encourage you to apply to future opportunities"
+    ]
+    
+    is_rejection = any(phrase in content_lower for phrase in rejection_indicators)
+    
+    # Reject obvious non-application emails (but not if it's a rejection email)
+    if not is_rejection and _looks_like_non_application(email_content):
         return "Not Job Application"
     
     system_prompt = (
@@ -115,7 +128,8 @@ def classify_email(email_content):
         
         if status_val not in ALLOWED_STATUSES:
             return "Not Job Application"
-        if _looks_like_non_application(email_content):
+        # Don't do blacklist check again if we already determined this is a rejection email
+        if not is_rejection and _looks_like_non_application(email_content):
             return "Not Job Application"
         return classification
     except (IndexError, AttributeError, KeyError) as e:

@@ -31,7 +31,7 @@ def create_status_pie_chart(data):
     status_colors = {
         'Applied': '#4ECDC4',
         'Assessment': '#45B7D1', 
-        'Interviewed': '#96CEB4',
+        'Interview': '#96CEB4',
         'Offer': '#FFEAA7',
         'Declined': '#FF6B6B'
     }
