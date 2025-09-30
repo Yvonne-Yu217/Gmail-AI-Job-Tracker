@@ -21,9 +21,8 @@ BLACKLIST_KEYWORDS = [
     "job alert", "jobs for you", "recommended jobs", "recommend jobs", "new jobs",
     "newsletter", "digest", "weekly update", "career tips", "invitation to apply",
     "hot jobs", "top jobs", "trending jobs", "hiring now",
-    "subscribe", "unsubscribe", "marketing",
-    # common noisy senders/brands in content
-    "lensa", "ziprecruiter", "indeed", "jobcase", "linkedin", "glassdoor"
+    "subscribe", "unsubscribe", "marketing"
+    # 已移除求职平台关键词，以便处理来自这些平台的申请邮件
 ]
 
 ALLOWED_STATUSES = {"applied", "assessment", "interviewed", "offer", "declined"}
